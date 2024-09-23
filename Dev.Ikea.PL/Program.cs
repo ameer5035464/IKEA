@@ -1,4 +1,5 @@
 using Dev.Ikea.DAL.Presistence.Data;
+using Dev.Ikea.DAL.Presistence.Repostories.Departments;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dev.Ikea.PL
@@ -17,6 +18,8 @@ namespace Dev.Ikea.PL
                 optionsbuilder.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
 
             );
+
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             var app = builder.Build();
 
