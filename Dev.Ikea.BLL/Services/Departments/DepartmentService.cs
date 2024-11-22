@@ -1,5 +1,5 @@
 ﻿using Dev.Ikea.BLL.Models.Departments;
-using Dev.Ikea.DAL.Models.Department;
+using Dev.Ikea.DAL.Models.Departments;
 using Dev.Ikea.DAL.Presistence.Repostories.Departments;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,9 +19,9 @@ namespace Dev.Ikea.BLL.Services.Departments
             var dept = _departmentRepository.GetAllIQueryable().Select(D => new DepartmentToReturnDTO
             {
                 Name = D.Name,
-                Description = D.Description,
                 CreationDate = D.CreationDate,
-                Id = D.Id
+                Id = D.Id,
+                Code = D.Code
             }).AsNoTracking().ToList();
 
             return dept;
@@ -54,7 +54,7 @@ namespace Dev.Ikea.BLL.Services.Departments
         {
             var CreateDep = new Department
             {
-                Id = department.Code,
+                Code = department.Code,
                 Name = department.Name,
                 Description = department.Description,
                 CreationDate = department.CreationDate,

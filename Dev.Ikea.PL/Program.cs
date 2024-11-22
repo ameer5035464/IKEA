@@ -1,6 +1,14 @@
+using Dev.Ikea.BLL.Services.Departments;
+using Dev.Ikea.BLL.Services.Employees;
+using Dev.Ikea.DAL.Models.Identity;
 using Dev.Ikea.DAL.Presistence.Data;
 using Dev.Ikea.DAL.Presistence.Repostories.Departments;
+using Dev.Ikea.DAL.Presistence.Repostories.Employees;
+using Dev.Ikea.PL.Helpers;
+using Dev.Ikea.PL.Settings;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace Dev.Ikea.PL
 {
@@ -15,11 +23,30 @@ namespace Dev.Ikea.PL
 
             builder.Services.AddDbContext<ApplicationDbContext>(optionsbuilder =>
 
-                optionsbuilder.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
+                optionsbuilder
+                .UseLazyLoadingProxies()
+                .UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
 
             );
 
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
+            builder.Services.AddIdentity<ApplicationIdentityUser, IdentityRole>((options) =>
+            {
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddDefaultTokenProviders()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddTransient<IEmailSettings, EmailSettings>();
+            builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+            builder.Services.ConfigureApplicationCookie((configures) =>
+            {
+                configures.LoginPath = "/Account/SignIn";
+            });
+
 
             var app = builder.Build();
 
@@ -36,11 +63,12 @@ namespace Dev.Ikea.PL
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Department}/{action=Index}/{id?}");
 
             app.Run();
         }

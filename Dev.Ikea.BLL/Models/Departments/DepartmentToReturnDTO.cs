@@ -1,4 +1,7 @@
-﻿namespace Dev.Ikea.BLL.Models.Departments
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Dev.Ikea.BLL.Models.Departments
 {
     public class DepartmentToReturnDTO
     {
@@ -6,9 +9,9 @@
         public int Id { get; set; }
 
         //Departments Properties
-        public int Code { get; set; }
+        public string? Code { get; set; }
         public string Name { get; set; } = null!;
-        public string? Description { get; set; }
+        [Display(Name = "Date Of Creation")]
         public DateOnly CreationDate { get; set; }
     }
 }

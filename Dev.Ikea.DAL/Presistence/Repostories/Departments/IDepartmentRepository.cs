@@ -1,19 +1,10 @@
-﻿using Dev.Ikea.DAL.Models.Department;
+﻿using Dev.Ikea.DAL.Models.Departments;
+using Dev.Ikea.DAL.Presistence.Repostories._Generic;
 
 namespace Dev.Ikea.DAL.Presistence.Repostories.Departments
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository : IRepositoryBase<Department>
     {
-        IEnumerable<Department> GetAll(bool withAsNoTracking = true);
-
-        IQueryable<Department> GetAllIQueryable();
-
-        Department? GetById(int id);
-
-        int Add(Department department);
-
-        int Update(Department department);
-
-        int Delete(Department department);
+        
     }
 }

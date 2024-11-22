@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GetAllDTO>
+
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/css/IndexSearch.css" asp-append-version="true" />
+
+
+<h1>All Employees</h1>
+
+<br />
+<br />
+<br />
+
+
+
+<a asp-controller="Employee" asp-action="AddEmployee" class="btn btn-lg btn-primary">Create new Employee</a>
+
+@if (Model.Count() > 0)
+{
+
+    <div class="sample one">
+        <form asp-action="Index" method="get">
+            <input type="text" name="searchText" placeholder="search" id="SearchInp">
+        <button type="submit" class="btn btn-search fa fa-search" value="search" ></button>
+        </form>
+    </div>
+
+
+        <partial name="_EmployeeTablePartial" model="@Model" />
+
+}
+
+else
+{
+    <div class="alert alert-primary mt-5 fw-bold" role="alert">
+        No Employee yet!
+    </div>
+}
+
+
+<script>
+	const searchBar = $('#SearchInp');
+	const table = $('table');
+	searchBar.on('keyup', function (event) {
+		var searchValue = searchBar.val();
+		$.ajax({
+			url: '/Employee/Search',
+			type: 'Get',
+			data: { searchInp: searchValue },
+			success: function (result) {
+				table.html(result)
+			},
+			error: function (xhr, status, error) {
+				console.log(error)
+			}
+
+		})
+	})
+</script>

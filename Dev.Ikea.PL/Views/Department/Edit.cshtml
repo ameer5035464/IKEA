@@ -1,0 +1,60 @@
+﻿@model DepartmentUpdateViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Department</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pure CSS3 Tabs</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="~/css/StyleSheet.css" asp-append-version="true" />
+</head>
+<body>
+
+	<div class="page">
+
+		<div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
+			<input type="radio" name="pcss3t" checked id="tab1" class="tab-content-first">
+			
+			<ul>
+
+				<li class="tab-content tab-content-first typography float-start">
+					<form asp-action="Edit">
+					
+						<div class="mb-3">
+							<label asp-for="Name">Name</label>
+							<input asp-for="Name" class="form-control">
+						</div>
+						<div class="mb-3">
+							<label asp-for="Code">Code</label>
+							<input asp-for="Code" class="form-control">
+						</div>
+						<div class="mb-3">
+						<label asp-for="Description">Description</label>
+						<input asp-for="Description" class="form-control">
+					</div>
+						<div class="mb-3">
+						<label asp-for="CreationDate">Creation Date</label>
+						<input asp-for="CreationDate" class="form-control" type="date">
+					</div>
+
+						<div>
+						<input type="submit" value="Save" class="btn btn-success ms-2 px-5 py-2"  />
+						</div>
+					</form>
+				</li>
+
+			</ul>
+
+			<a asp-controller="department" asp-action="Index" class="btn btn-danger ms-2 px-5 py-2 mt-4">Back</a>
+
+		</div>
+
+	</div>
+</body>
+</html>

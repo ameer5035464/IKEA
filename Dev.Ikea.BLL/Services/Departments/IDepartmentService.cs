@@ -1,5 +1,5 @@
 ﻿using Dev.Ikea.BLL.Models.Departments;
-using Dev.Ikea.DAL.Models.Department;
+using Dev.Ikea.DAL.Models.Departments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
