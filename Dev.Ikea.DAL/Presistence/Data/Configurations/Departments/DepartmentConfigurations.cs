@@ -1,4 +1,4 @@
-﻿using Dev.Ikea.DAL.Models.Department;
+﻿using Dev.Ikea.DAL.Models.Departments;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -18,6 +18,11 @@ namespace Dev.Ikea.DAL.Presistence.Data.Configurations.Departments
             builder.Property(d => d.Code).HasColumnType("varchar(50)");
             builder.Property(d => d.CreatedOn).HasDefaultValueSql("GETDATE()");
             builder.Property(d => d.LastModifiedOn).HasComputedColumnSql("GETDATE()");
+
+            builder.HasMany(d => d.Employees)
+                .WithOne(E => E.Department)
+                .HasForeignKey(E => E.DepartmentId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

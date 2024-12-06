@@ -1,0 +1,103 @@
+﻿@model Employee
+
+@{
+    ViewData["Title"] = "GetEmployeeById";
+}
+
+<h1>GetEmployeeById</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pure CSS3 Tabs</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="~/css/StyleSheet.css" asp-append-version="true" />
+</head>
+<body>
+
+	<div class="page">
+		<div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
+			<input type="radio" name="pcss3t" checked id="tab1" class="tab-content-first">
+			<label for="tab1">General</label>
+
+			<input type="radio" name="pcss3t" id="tab2" class="tab-content-2">
+			<label for="tab2">Adminstration</label>
+
+			<ul>
+				<li class="tab-content tab-content-first typography float-start">
+					<div class="row mb-4">
+						<div class="col-6">
+							<label for="Name" asp-for="Name">Name</label>
+							<input asp-for="Name" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+						</div>
+						<div class="col-6">
+							<label for="Age" asp-for="Age">Age</label>
+							<input asp-for="Age" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+						</div>
+					</div>
+					<div class=" mb-4">
+						<label asp-for="Email" for="Email">Email</label>
+						<input asp-for="Email" class="form-control" type="email" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div>
+						<label asp-for="IsActive" for="IsActive">IsActive</label>
+						<input asp-for="IsActive" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div>
+						<label asp-for="Salary" for="Salary">Salary</label>
+						<input asp-for="Salary" class="form-control" type="number" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div>
+						<label asp-for="Department.Name" for="Department.Name">Department</label>
+						<input asp-for="Department.Name" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div>
+						<label asp-for="Address" for="Address">Address</label>
+						<input asp-for="Address" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div>
+						<label asp-for="Gender" for="Date">Gender</label>
+						<input asp-for="Gender" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div>
+						<label asp-for="EmployeeType" for="Date">EmployeeType</label>
+						<input asp-for="EmployeeType" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+				</li>
+
+
+				<li class="tab-content tab-content-2 typography float-start">
+
+					<div class=" mb-4">
+						<label asp-for="Id" for="By">Id</label>
+						<input asp-for="Id" class=" form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div class=" mb-4">
+						<label asp-for="CreatedBy" for="By">Created By</label>
+						<input asp-for="CreatedBy" class=" form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div class=" mb-4">
+						<label asp-for="CreatedOn" for="On">Created On</label>
+						<input asp-for="CreatedOn" class="form-control" type="date" aria-label="Disabled input example" disabled readonly>
+					</div>
+
+					<div class=" mb-4">
+						<label asp-for="LastModifiedBy" for="Last Modified By">Last Modified By</label>
+						<input asp-for="LastModifiedBy" class="form-control" type="text" aria-label="Disabled input example" disabled readonly>
+					</div>
+					<div>
+						<label asp-for="LastModifiedOn" for="ModefiedOn">Last Modefied On</label>
+						<input asp-for="LastModifiedOn" class="form-control" type="date" aria-label="Disabled input example" disabled readonly>
+					</div>
+				</li>
+			</ul>
+
+			<a asp-controller="Employee" asp-action="UpdateEmployee" asp-route-id ="@Model.Id" class="btn btn-success px-5 py-2 mt-4">Edit</a>
+			<a asp-controller="Employee" asp-action="Index" class="btn btn-danger ms-2 px-5 py-2 mt-4">Back</a>
+
+		</div>
+	</div>
+</body>
+</html>

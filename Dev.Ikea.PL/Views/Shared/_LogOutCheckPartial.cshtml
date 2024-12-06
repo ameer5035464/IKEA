@@ -1,0 +1,26 @@
+﻿@inject SignInManager<ApplicationIdentityUser> signIn;
+@inject UserManager<ApplicationIdentityUser> userManager;
+
+
+<ul class="ms-auto navbar-nav flex-grow-1 ">
+    @if(signIn.IsSignedIn(User)){
+
+         <li class="ms-auto mt-2">
+            @userManager.GetUserName(User)
+        </li>
+
+         <li>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignOut">Sign Out</a>
+       </li>
+    }
+    else
+    {
+        <li class="ms-auto">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a>
+        </li>
+
+        <li>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignUp">register</a>
+        </li>
+    }
+</ul>
